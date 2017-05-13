@@ -3,12 +3,6 @@ import json
 from graph import *
 from pagerank import pagerank
 
-f = open("data/newnodes.txt")
-f.readlines()
-f.read()
-
-
-
 # Parse dataset into adjacency matrix
 adj_list = adjacency_list("data/adj_list")
 # Non scaled pagerank
@@ -25,6 +19,10 @@ for index, value in enumerate(rank):
 sorted_nodes = sorted(nodes, key=lambda k: k['pagerank'], reverse=True)
 
 # Output ranking to file
-with open('data/ranking.json', 'w') as f:
+with open('data/pagerankunscaled.json', 'w') as f:
     json.dump(sorted_nodes, f)
 
+# Scaled pagerank
+
+
+# Random walks
