@@ -55,7 +55,6 @@ def get_node_info(file):
     content = content[1:]
     node_info = []
     for node in content:
-        print(node)
         attributes = {}
         attributes['id'] = node.split("\n")[0].split()[0]
         attributes['set'] = node.split("\n")[0].split()[2]
