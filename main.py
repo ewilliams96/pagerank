@@ -1,8 +1,30 @@
 ''' Run PageRank algorithm on the moon landing webgraph '''
-from graph import adjacency_matrix
+import json
+from graph import *
 from pagerank import pagerank
 
+f = open("data/newnodes.txt")
+f.readlines()
+f.read()
+
+
+
 # Parse dataset into adjacency matrix
-matrix = adjacency_matrix("data/adj_list")
+adj_list = adjacency_list("data/adj_list")
 # Non scaled pagerank
-pagerank(matrix, 10)
+rank = pagerank(adj_list, 10)
+
+# output results
+nodes = get_node_info("data/nodes")
+
+# Append rank to nodes
+for index, value in enumerate(rank):
+    nodes[index]["pagerank"] = rank[index]
+
+# Sort nodes by rank, desc
+sorted_nodes = sorted(nodes, key=lambda k: k['pagerank'], reverse=True)
+
+# Output ranking to file
+with open('data/ranking.json', 'w') as f:
+    json.dump(sorted_nodes, f)
+
