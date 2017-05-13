@@ -1,5 +1,5 @@
 def adjacency_matrix(file):
-    ''' get adjacency matrix from file '''
+    ''' Parse adjacency list file into adjacency matrix '''
 
     # Open and read lines from file
     with open(file, 'r') as f:
@@ -9,9 +9,16 @@ def adjacency_matrix(file):
     n = len(adj_list)
     matrix = [[0 for i in range(n)] for j in range(n)]
 
-    for index, line in enumerate(adj_list):
-        #print(line)
-        pass
+    for i, vertex in enumerate(adj_list):
+        # Extract edges in adjacency list
+        edges = vertex.split()
+        for edge in edges:
+            try:
+                j = int(vertex)
+            except ValueError:
+                continue
+            # Insert edge into adjacency matrix
+            matrix[i][j] = 1
 
     return matrix
 
