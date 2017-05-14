@@ -38,3 +38,19 @@ def output_rank_csv(node_file, rank, outfile):
             del item['id']
             writer.writerow(item)
 
+def output_random_walks(node_file, frequencies, outfile):
+    nodes = get_node_info(node_file)
+    for index, node in enumerate(nodes):
+        if index in frequencies:
+            node["frequency"] = frequencies[index]
+        else:
+            node["frequency"] = 0
+    sorted_nodes = sorted(nodes, key=lambda k: k['frequency'], reverse=True)
+
+    with open(outfile, 'w') as f:
+        fields = ['title', 'url', 'set', 'indegree', 'outdegree', 'frequency']
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        for item in sorted_nodes:
+            del item['id']
+            writer.writerow(item)

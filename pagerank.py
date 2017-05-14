@@ -16,7 +16,7 @@ def pagerank_scale(rank_vector, s):
 
 def pagerank_update(adj_list, rank_vector, scaled, s):
     ''' Perform pagerank update step and update values of matrix and rank_vector
-        Return True if equillibrium is hit 
+        Return True if equilibrium is hit 
     '''
     # Copy old rank vector to calculate new values
     old_rank = list(rank_vector)
@@ -62,9 +62,6 @@ def pagerank(adj_list, k, scaled=False, s=0.85):
 
     for i in range(k):
         ret = pagerank_update(adj_list, rank_vector, scaled, s)
-        if ret:
-            print("Equillibrium hit")
-            break
 
     return rank_vector
 
